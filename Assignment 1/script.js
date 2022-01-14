@@ -17,7 +17,7 @@ const phoneErr = document.querySelector(".phone-error");
 const operatorErr = document.querySelector(".operator-error");
 const amountErr = document.querySelector(".amount-error");
 
-const operators = ["Airtel", "BSNL", "Jio", "MTNL", "Vi"];
+const operators = ["Airtel", "BSNL", "Jio", "JIO", "MTNL", "Vi"];
 
 const init = function () {
   phone.value = "";
@@ -56,10 +56,22 @@ operatorInput.addEventListener("click", function () {
 });
 
 operatorOption.addEventListener("click", function (e) {
-  let value =
-    e.originalTarget.innerText === ""
-      ? e.explicitOriginalTarget.alt
-      : e.originalTarget.innerText;
+  console.log(e);
+  let value = e.target.childNodes[1]?.alt;
+  if (value === undefined) {
+    value = e.target.alt;
+
+    if (value === undefined) value = e.target.childNodes[0].data;
+  }
+  //   let value = e.target.alt
+  //     ? e.target.alt
+  //     : e.target.childNodes[0]?.data
+  //     ? e.target.childNodes[0].data
+  //     : e.target.childNodes[1].alt;
+  //   let value =
+  //     e.originalTarget.innerText === ""
+  //       ? e.explicitOriginalTarget.alt
+  //       : e.originalTarget.innerText;
   operatorInput.value = value;
   e.preventDefault();
 });
@@ -69,6 +81,7 @@ document.addEventListener("click", function (e) {
 });
 
 checkbox.addEventListener("click", function (e) {
+  console.log(checkbox);
   if (e.target.checked === true) {
     rechargeBtn.innerText = "Recharge Now";
   } else rechargeBtn.innerText = "Proceed to Recharge";
@@ -84,6 +97,8 @@ rechargeBtn.addEventListener("click", (e) => {
     !isNaN(phone.value) &&
     phone.value.length === 10 &&
     operatorInput.value !== "" &&
+    operators.includes(operatorInput.value) &&
+    !isNaN(Number(amount.value)) &&
     amount.value !== ""
   ) {
     show(modal);
@@ -101,6 +116,7 @@ overlay.addEventListener("click", () => {
 });
 
 const removeError = () => {
+  console.log(!isNaN(phone.value) && phone.value.length === 10);
   if (!isNaN(phone.value) && phone.value.length === 10) hide(phoneErr);
   if (operatorInput.value !== "" && operators.includes(operatorInput.value))
     hide(operatorErr);

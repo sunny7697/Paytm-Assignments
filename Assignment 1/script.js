@@ -2,6 +2,8 @@
 
 const signinBtn = document.querySelector(".signin-btn");
 const signinImg = document.querySelector(".signinImg");
+const headings = document.querySelector(".headings");
+const navImg = document.querySelector(".nav-img");
 const more = document.querySelector(".more");
 const navigationMore = document.querySelector(".navigation-more");
 const operatorInput = document.querySelector(".operator-input");
@@ -126,3 +128,16 @@ const removeError = () => {
 phone.addEventListener("keyup", removeError);
 operatorOption.addEventListener("click", removeError);
 amount.addEventListener("keyup", removeError);
+
+window.addEventListener("resize", () => {
+  const w = window.innerWidth;
+  console.log(w);
+  if (w >= 1160) {
+    headings.style.display = "initial";
+  } else headings.style.display = "none";
+});
+navImg.addEventListener("click", () => {
+  if (headings.style.display === "initial") headings.style.display = "none";
+  else headings.style.display = "initial";
+  console.log(window.innerWidth);
+});

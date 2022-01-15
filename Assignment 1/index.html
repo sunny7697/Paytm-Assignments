@@ -23,6 +23,11 @@
           />
         </section>
 
+
+        <section class="nav-icon">
+          <img src="images/nav.png" alt="navicon" class="nav-img">
+        </section>
+
         <!-- headings -->
         <section class="heading-section headings">
           <ul class="heading-icons">
@@ -53,7 +58,7 @@
     <!-- Notification Banner -->
     <div class="notification">
       <p class="notification-desc">
-        <b>No Wallet KYC Required</b> <span style="font-size: x-large;">😊</span>to pay using UPI on Paytm.
+        <b>No Wallet KYC Required</b> <span style="font-size: x-large;"> 😊 </span>to pay using UPI on Paytm.
         <span><a href="#">Learn more.</a></span>
       </p>
     </div>
@@ -259,16 +264,18 @@
       <form class="form-group">
         <h4 class="form-heading">Recharge or Pay Mobile Bill</h4>
         <div class="form-radio">
-          <input type="radio" checked>Prepaid</input> <span></span>
-          <input type="radio">Postpaid</input>
+          <input type="radio" name="radio" value="prepaid" id="prepaid" checked> <label for="prepaid">Prepaid</label><span></span>
+          <input type="radio" name="radio" value="postpaid" id="postpaid"><label for="postpaid">Postpaid</label>
         </div>
         <div class="form-field form-phone">
           <input type="tel" class="phone" maxLength="10" title="Enter correct phone number" required="">
+          <span></span>
           <label>Mobile Number</label>
-          <p class="phone-error hidden">Please enter a valid mobile number</p>
+          <p class="error phone-error hidden">Please enter a valid mobile number</p>
         </div>
         <div class="form-field form-operator">
           <input type="text" class="operator-input" required="">
+          <span></span>
           <label>Operator</label>
           <!-- Operator options -->
           <div class="navigation-more operator hidden">
@@ -302,12 +309,13 @@
               </a>
             </div>
           </div>
-          <p class="operator-error hidden">Please select operator</p>
+          <p class="error operator-error hidden">Please select operator</p>
         </div>
         <div class="form-field">
           <input type="text" class="amount" value="" required="">
+          <span></span>
            <label>Amount</label>
-           <p class="amount-error hidden">Please enter a valid amount</p>
+           <p class="error amount-error hidden">Please enter a valid amount</p>
         </div>
         <div class="checkbox-div">
           <input type="checkbox" name="" id="" class="checkbox-input">

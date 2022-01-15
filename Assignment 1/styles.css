@@ -20,15 +20,21 @@ a {
 .header-container {
   box-shadow: 0 5px 20px rgba(0, 41, 112, 0.1);
   font-weight: bold;
+  width: 100%;
+  position: fixed;
+  background: #fff;
+  height: 5.5rem;
+  top: 0;
+  z-index: 20;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  height: 90px;
-  width: 90%;
+  width: 100%;
+  height: 100%;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 60px;
   margin: 0 auto;
   font-size: 1.2rem;
   flex-wrap: wrap;
@@ -38,18 +44,28 @@ a {
   height: 50px;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.nav-icon {
+  display: none;
 }
 
 .headings {
   width: 790px;
+  /* margin-top: 30px; */
 }
 
 .heading-icons {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  cursor: pointer;
+  align-items: center;
   flex-wrap: wrap;
+}
+
+.heading-link {
+  cursor: pointer;
 }
 
 .signin {
@@ -76,18 +92,20 @@ a {
 
 .signin-btn span {
   margin-left: 5px;
+  display: flex;
 }
 
 .signin-btn img {
   width: 100%;
 }
 
-@media screen and (max-width: 952px) {
+/* @media screen and (max-width: 952px) {
   .header {
     height: 320px;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-between;
   }
 
   .heading-icons {
@@ -100,26 +118,39 @@ a {
   .heading-link {
     margin: 5px 0;
   }
-}
+} */
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1160px) {
   .header {
-    justify-content: space-evenly;
-    height: fit-content;
+    padding: 25px;
   }
 
   .headings {
     height: fit-content;
     margin: 0 -5px;
+    width: 101vw;
+    position: absolute;
+    top: 5.5rem;
+    left: 0;
+    display: none;
+    background: #fff;
   }
 
-  .heading-icons {
-    flex-direction: row;
-    flex-wrap: wrap;
+  .nav-icon {
+    display: initial;
+  }
+
+  .nav-img {
+    width: 40px;
+    cursor: pointer;
   }
 
   .heading-link {
-    margin: 8px auto;
+    text-align: center;
+    width: 100%;
+    border-top: 0.01px solid rgba(128, 128, 128, 0.8);
+    margin: 0;
+    padding: 8px;
   }
 }
 
@@ -127,6 +158,7 @@ a {
 
 /* Start Notification */
 .notification {
+  margin-top: 5.5rem;
   text-align: center;
   background-image: linear-gradient(rgba(201, 190, 190, 0.24), white);
 }
@@ -178,6 +210,13 @@ a {
     margin-bottom: 20px;
   }
 }
+
+/* To prevent the collision of navigation-bar and form */
+@media screen and (min-width: 920px) and (max-width: 1080px) {
+  .navigation-bar {
+    height: 17rem;
+  }
+}
 /* End Navigation */
 
 /* Start Recharge Form */
@@ -188,7 +227,7 @@ a {
   border-radius: 15px;
   background: #fff;
   position: relative;
-  top: -66px;
+  top: -4rem;
   left: 4rem;
   box-shadow: 0 5px 20px rgba(0, 41, 112, 0.2);
 }
@@ -235,7 +274,24 @@ input {
   font-size: small;
 }
 
-.form-field p {
+.form-field span::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transform: translateX(-50%);
+  transition: 0.25s linear;
+}
+
+.form-field input:focus ~ span::before,
+.form-field input:valid ~ span::before {
+  width: 100%;
+}
+
+.error {
   margin-bottom: -20px;
   font-size: smaller;
   color: red;
@@ -305,9 +361,12 @@ input {
 }
 
 .more-item {
-  border-bottom: 0.01px solid gray;
+  border-bottom: 0.01px solid rgba(128, 128, 128, 0.2);
 }
 
+.more-item p {
+  color: black;
+}
 .more-item a {
   margin: auto 5px;
   display: flex;

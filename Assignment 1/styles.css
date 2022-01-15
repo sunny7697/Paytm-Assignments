@@ -54,6 +54,8 @@ a {
 .headings {
   width: 790px;
   /* margin-top: 30px; */
+  display: flex;
+  text-align: center;
 }
 
 .heading-icons {
@@ -158,7 +160,7 @@ a {
 
 /* Start Notification */
 .notification {
-  margin-top: 5.5rem;
+  margin-top: 5.55rem;
   text-align: center;
   background-image: linear-gradient(rgba(201, 190, 190, 0.24), white);
 }
@@ -292,7 +294,7 @@ input {
 }
 
 .error {
-  margin-bottom: -20px;
+  margin-bottom: -15.5px;
   font-size: smaller;
   color: red;
 }

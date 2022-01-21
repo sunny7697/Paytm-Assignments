@@ -76,16 +76,16 @@ a {
 }
 
 .signin-btn {
+  border-radius: 20px;
   background: #00baf2;
   padding: 2px 2px 2px 22px;
-  border-radius: 20px;
+  font-size: 15px;
+  color: #fff;
+  border: transparent;
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  font-size: 15px;
-  color: #fff;
-  border: 0;
+  justify-content: end;
 }
 
 .signin-btn:hover {

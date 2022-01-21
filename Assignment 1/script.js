@@ -133,11 +133,11 @@ window.addEventListener("resize", () => {
   const w = window.innerWidth;
   console.log(w);
   if (w >= 1160) {
-    headings.style.display = "initial";
+    headings.style.display = "flex";
   } else headings.style.display = "none";
 });
 navImg.addEventListener("click", () => {
-  if (headings.style.display === "initial") headings.style.display = "none";
-  else headings.style.display = "initial";
+  if (headings.style.display === "flex") headings.style.display = "none";
+  else headings.style.display = "flex";
   console.log(window.innerWidth);
 });

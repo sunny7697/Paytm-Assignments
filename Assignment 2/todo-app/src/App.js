@@ -5,6 +5,7 @@ import Login from "./components/Login/Login";
 import PageNotFound from "./components/PageNotFound/PageNotFound";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
+import AddTask from "./components/AddTask/AddTask";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/add" element={<AddTask />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />

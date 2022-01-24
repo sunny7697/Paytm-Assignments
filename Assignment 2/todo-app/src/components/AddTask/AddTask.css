@@ -1,0 +1,54 @@
+.task-container {
+  min-height: calc(100vh - 70px);
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: center;
+}
+
+.add-form-container {
+  min-width: 70%;
+  /* border: 1px solid blue; */
+  padding: 30px 0;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  margin: 30px 0 5px 0;
+}
+
+.form-field-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.form-field label {
+  margin-bottom: 5px;
+}
+
+.add-form-container input,
+select {
+  border: 0;
+  padding: 5px 10px 10px 10px;
+  border-bottom: 1px solid;
+  background: #fff;
+  font-size: medium;
+}
+
+.save-btn,
+.cancel-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 0.2rem;
+  margin: 25px 20px 0 0;
+  background: rgb(255, 166, 0);
+}
+.save-btn {
+  background: #1e96c8;
+}
+.save-btn:hover {
+  background: rgb(56, 243, 19);
+}
+
+.cancel-btn:hover {
+  background: rgb(238, 39, 39);
+}

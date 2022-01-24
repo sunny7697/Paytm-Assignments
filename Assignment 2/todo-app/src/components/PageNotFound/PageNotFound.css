@@ -1,0 +1,33 @@
+.error-page {
+  min-height: calc(100vh - 142px);
+  background-image: url(../../../public/images/errorpage.jpg);
+  background-position-y: center;
+  background-position-x: right;
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 20vw;
+  margin: 10px 40px 0 0;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1024px) {
+  .error-page {
+    background-image: url(../../../public/images/errorpage4.jpg);
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
+    background-position: right;
+  }
+
+  .error-text {
+    background: #fff;
+  }
+}

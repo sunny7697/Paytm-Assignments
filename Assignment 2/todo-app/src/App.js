@@ -16,7 +16,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home dispatch={dispatch} />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login dispatch={dispatch} />} />
           <Route path="/add" element={<AddTask dispatch={dispatch} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>

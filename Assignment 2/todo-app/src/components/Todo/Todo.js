@@ -10,7 +10,7 @@ const Todo = ({
   priority,
   date,
   description,
-  updateCheckedBox,
+  updateCheckedBoxArray,
   dispatch,
 }) => {
   // It checks if due_date has passed or not to change the color of todo accordingly
@@ -26,12 +26,12 @@ const Todo = ({
 
   const handleCheckBoxes = (e) => {
     if (e.target.checked) {
-      updateCheckedBox((prevCheckedBoxes) => [
+      updateCheckedBoxArray((prevCheckedBoxes) => [
         ...prevCheckedBoxes,
         e.target.id,
       ]);
     } else {
-      updateCheckedBox((prevCheckedBoxes) =>
+      updateCheckedBoxArray((prevCheckedBoxes) =>
         prevCheckedBoxes.filter((box) => box !== e.target.id)
       );
     }

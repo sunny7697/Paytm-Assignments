@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const todoSlice = createSlice({
-  name: "todos",
-  initialState: [
+const initialState = {
+  token: {},
+  todos: [
     {
       id: 12345,
       title: "Study",
@@ -18,8 +18,16 @@ const todoSlice = createSlice({
       description: "Complete Assignment",
     },
   ],
+};
+
+const todoSlice = createSlice({
+  name: "todos",
+  initialState,
 
   reducers: {
+    hydrate: (state, action) => {
+      return action.payload;
+    },
     addTodo: (state, action) => {
       const newTodo = {
         id: Date.now(),
@@ -28,13 +36,15 @@ const todoSlice = createSlice({
         date: action.payload.date,
         description: action.payload.description,
       };
-      state.push(newTodo);
+      state.todos.push(newTodo);
     },
     deleteTodo: (state, action) => {
-      return state.filter((todo) => todo.id !== action.payload.id);
+      state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
+    },
+    addToken: (state, action) => {
+      state.token = action.payload;
     },
   },
 });
-
-export const { addTodo, deleteTodo } = todoSlice.actions;
+export const { addTodo, deleteTodo, addToken } = todoSlice.actions;
 export default todoSlice.reducer;

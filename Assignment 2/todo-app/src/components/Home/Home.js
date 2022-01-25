@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Home = ({ dispatch }) => {
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos.todos);
 
   // To decide whether checkboxes to show or not (it's handler used in button down below and passing as props in Todo.js below)
   const [showCheckbox, setShowCheckbox] = useState(false);
@@ -15,7 +15,7 @@ const Home = ({ dispatch }) => {
   };
 
   //   It checks which todo items has been selected (storing the id's in this array)
-  const [checkedBoxes, setCheckedBoxes] = useState([]);
+  const [checkedBoxesArray, setCheckedBoxesArray] = useState([]);
 
   const element = todos.map((todo) => (
     <Todo
@@ -26,7 +26,7 @@ const Home = ({ dispatch }) => {
       priority={todo.priority}
       date={todo.date}
       description={todo.description}
-      updateCheckedBox={setCheckedBoxes}
+      updateCheckedBoxArray={setCheckedBoxesArray}
       dispatch={dispatch}
     />
   ));
@@ -35,7 +35,9 @@ const Home = ({ dispatch }) => {
     <div className="home">
       <div className="buttons">
         <button className="btn" onClick={showCheckboxHandler}>
-          {checkedBoxes.length === 0 ? "Select Multiple" : "Delete Selected"}
+          {checkedBoxesArray.length === 0
+            ? "Select Multiple"
+            : "Delete Selected"}
         </button>
         <Link to="/add">
           <button className="btn">Add Task</button>

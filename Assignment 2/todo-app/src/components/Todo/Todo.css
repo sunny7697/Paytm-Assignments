@@ -15,16 +15,33 @@
   padding: 5px 0 5px 10px;
 }
 
-.todo-desc {
+.todo-text {
   padding: 0 20px;
-  min-height: 90px;
+  height: 120px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.todo-title {
+  border-bottom: 0.5px solid rgba(128, 128, 128, 0.384);
+  padding-bottom: 2px;
+  margin-bottom: 5px;
+}
+.todo-desc {
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+.todo-desc::-webkit-scrollbar {
+  display: none;
 }
 
 .todo-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 4px 0 4px 20px;
+}
+
+.due-date {
+  font-size: small;
 }
 
 .edit {

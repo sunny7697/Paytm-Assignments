@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { addTodos } from "../features/todos/todosSlice";
 import "./AddTask.css";
 
-const AddTask = () => {
+const AddTask = ({ dispatch }) => {
   const [formData, setFormData] = useState({
     title: "",
     priority: "Medium",
@@ -20,10 +22,17 @@ const AddTask = () => {
     });
   };
 
+  // adding Task in redux store
+  const addTask = (e) => {
+    e.preventDefault();
+    dispatch(addTodos(formData));
+  };
+  console.log("yo");
+
   return (
     <div className="task-container">
       <div className="add-form-container">
-        <form className="add-form">
+        <form className="add-form" onSubmit={addTask}>
           <h1 className="heading">Create Task</h1>
           <div className="form-field">
             {/* Title */}
@@ -78,7 +87,11 @@ const AddTask = () => {
           </div>
           <div className="button-field">
             <button className="btn save-btn">Save</button>
-            <button className="btn cancel-btn">Cancel</button>
+            <Link to="/">
+              <button type="button" className="btn cancel-btn">
+                Cancel
+              </button>
+            </Link>
           </div>
         </form>
       </div>

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Todo from "../Todo/Todo";
 import "./Home.css";
 import todos from "../../todos";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   // To decide whether checkboxes to show or not (it's handler used in button down below and passing as props in Todo.js below)
@@ -22,7 +23,9 @@ const Home = () => {
         <button className="btn" onClick={showCheckboxHandler}>
           {boxSelected === 0 ? "Select Multiple" : "Delete Selected"}
         </button>
-        <button className="btn">Add Task</button>
+        <Link to="/add">
+          <button className="btn">Add Task</button>
+        </Link>
       </div>
       <Todo
         showCheckbox={showCheckbox}

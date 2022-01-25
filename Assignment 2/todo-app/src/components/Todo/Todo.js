@@ -44,7 +44,10 @@ const Todo = ({ showCheckbox, todos, toggleButton }) => {
               onClick={toggleButton}
             />
           </div>
-          <div className="todo-desc">{todo.desc}</div>
+          <div className="todo-text">
+            <div className="todo-title">{todo.title}</div>
+            <div className="todo-desc">{todo.desc}</div>
+          </div>
           <div className={`todo-footer ${bkg(todo.due_date) + "-footer"}`}>
             <div className="due-date">{todo.due_date}</div>
             <div className="footer-actions">

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Todo from "../Todo/Todo";
 import "./Home.css";
-import todos from "../../todos";
+// import todos from "../../todos";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const Home = () => {
+const Home = ({ dispatch }) => {
   // To decide whether checkboxes to show or not (it's handler used in button down below and passing as props in Todo.js below)
   const [showCheckbox, setShowCheckbox] = useState(false);
   const showCheckboxHandler = () => {
@@ -16,6 +17,8 @@ const Home = () => {
   const toggleButton = (len) => {
     setTimeout(() => setBoxSelected(len), 0);
   };
+
+  const todos = useSelector((state) => state.todos);
 
   return (
     <div className="home">
@@ -31,6 +34,7 @@ const Home = () => {
         showCheckbox={showCheckbox}
         todos={todos}
         toggleButton={toggleButton}
+        dispatch={dispatch}
       />
     </div>
   );

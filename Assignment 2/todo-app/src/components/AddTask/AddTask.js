@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { addTodos } from "../features/todos/todosSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { addTodo } from "../../redux/todoSlice";
 import "./AddTask.css";
 
 const AddTask = ({ dispatch }) => {
@@ -14,7 +14,6 @@ const AddTask = ({ dispatch }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => {
-      console.log(typeof value);
       return {
         ...prevFormData,
         [name]: value,
@@ -22,12 +21,13 @@ const AddTask = ({ dispatch }) => {
     });
   };
 
-  // adding Task in redux store
+  // adding Task in redux store and redirecting to homepage back
+  const navigate = useNavigate();
   const addTask = (e) => {
     e.preventDefault();
-    dispatch(addTodos(formData));
+    dispatch(addTodo(formData));
+    navigate("/");
   };
-  console.log("yo");
 
   return (
     <div className="task-container">

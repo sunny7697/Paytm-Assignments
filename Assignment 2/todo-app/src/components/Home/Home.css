@@ -24,3 +24,10 @@
 .btn:hover {
   background-image: linear-gradient(-180deg, #1d95c9 0%, #17759c 100%);
 }
+
+.todo-containers {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  min-height: 150px;
+}

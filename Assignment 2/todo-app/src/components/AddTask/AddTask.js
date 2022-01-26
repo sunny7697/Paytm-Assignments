@@ -22,10 +22,28 @@ const AddTask = ({ dispatch }) => {
   };
 
   // adding Task in redux store and redirecting to homepage back
+  const monthNames = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
   const navigate = useNavigate();
   const addTask = (e) => {
     e.preventDefault();
-    dispatch(addTodo(formData));
+    const formDate = new Date(formData.date);
+    const dateString = `${
+      monthNames[formDate.getMonth()]
+    } ${formDate.getDate()}, ${formDate.getFullYear()}`;
+    dispatch(addTodo({ ...formData, date: dateString }));
     navigate("/");
   };
 

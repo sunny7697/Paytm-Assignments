@@ -10,8 +10,10 @@ const Home = ({ dispatch }) => {
 
   // To decide whether checkboxes to show or not (it's handler used in button down below and passing as props in Todo.js below)
   const [showCheckbox, setShowCheckbox] = useState(false);
+  const [btnText, setBtnText] = useState(true);
   const showCheckboxHandler = () => {
     setShowCheckbox((checkbox) => !checkbox);
+    setBtnText((btnText) => !btnText);
   };
 
   //   It checks which todo items has been selected (storing the id's in this array)
@@ -35,7 +37,7 @@ const Home = ({ dispatch }) => {
     <div className="home">
       <div className="buttons">
         <button className="btn" onClick={showCheckboxHandler}>
-          {checkedBoxesArray.length === 0
+          {checkedBoxesArray.length === 0 || btnText
             ? "Select Multiple"
             : "Delete Selected"}
         </button>

@@ -15,7 +15,7 @@ const Todo = ({
 }) => {
   // It checks if due_date has passed or not to change the color of todo accordingly
   const bkg = (due_date) => {
-    const todayDateTime = new Date(new Date().toLocaleDateString()).getTime();
+    const todayDateTime = new Date(new Date().toDateString()).getTime();
     const due_date_time = new Date(due_date).getTime();
     return due_date_time < todayDateTime
       ? "red"

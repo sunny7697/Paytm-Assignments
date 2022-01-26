@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { deleteTodo } from "../../redux/todoSlice";
+import ReactTooltip from "react-tooltip";
 import "./Todo.css";
 
 const Todo = ({
@@ -25,6 +26,7 @@ const Todo = ({
       : "";
   };
 
+  // It fills the checkedBoxArray state in Homepage that contains todo items that are checked
   const handleCheckBoxes = (e) => {
     if (e.target.checked) {
       updateCheckedBoxArray((prevCheckedBoxes) => [
@@ -44,16 +46,29 @@ const Todo = ({
     dispatch(deleteTodo({ id: id }));
   };
 
+  // To show tooltip that tells priority
+  const priorityTooltip =
+    priority === "High"
+      ? "High Priority"
+      : priority === "Medium"
+      ? "Medium Priority"
+      : "Low Priority";
+
   return (
     <div className="todo-container">
       <div key={id} className={`todo-item ${bkg(date) + "-border"}`}>
-        <div className={`todo-select ${showCheckbox ? "" : "hidden"}`}>
-          <input
-            type="checkbox"
-            name="select"
-            id={id}
-            onChange={handleCheckBoxes}
-          />
+        <div className="todo-select">
+          <div className={`${showCheckbox ? "" : "hidden"}`}>
+            <input
+              type="checkbox"
+              name="select"
+              id={id}
+              onChange={handleCheckBoxes}
+            />
+          </div>
+          <div className="prio" data-tip={priorityTooltip}>
+            {priority[0]}
+          </div>
         </div>
         <div className="todo-text">
           <div className="todo-title">{title}</div>
@@ -73,6 +88,7 @@ const Todo = ({
           </div>
         </div>
       </div>
+      <ReactTooltip />
     </div>
   );
 };

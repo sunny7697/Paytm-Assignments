@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { addTodo, deleteTodo } from "../../redux/todoSlice";
 import "./AddTask.css";
 
 const AddTask = ({ dispatch }) => {
-  // editing todo task
+  // for editing todo task
   const path = window.location.pathname.split("/");
   const id = Number(path[2]);
   const editFormData = useSelector((state) =>
@@ -15,7 +15,13 @@ const AddTask = ({ dispatch }) => {
   const [formData, setFormData] = useState({
     title: id ? editFormData.title : "",
     priority: id ? editFormData.priority : "Medium",
-    date: id ? new Date(editFormData.date).toISOString().slice(0, 10) : "",
+    date: id
+      ? new Date(editFormData.date)
+          .toLocaleDateString("pt-br")
+          .split("/")
+          .reverse()
+          .join("-")
+      : "",
     description: id ? editFormData.description : "",
   });
 
@@ -57,8 +63,14 @@ const AddTask = ({ dispatch }) => {
       monthNames[formDate.getMonth()]
     } ${formDate.getDate()}, ${formDate.getFullYear()}`;
     dispatch(addTodo({ ...formData, date: dateString }));
+    alert(`Task ${id ? "updated" : "created"} Successfully`);
     navigate("/");
   };
+
+  const token = useSelector((state) => state.todos.token);
+  useEffect(() => {
+    if (typeof token !== "string") navigate("/login");
+  }, []);
 
   return (
     <div className="task-container">
@@ -77,6 +89,11 @@ const AddTask = ({ dispatch }) => {
               className="title"
               value={formData.title}
               onChange={handleChange}
+              maxLength={20}
+              disabled={path[1] === "edit"}
+              pattern="[a-zA-Z0-9\s]+"
+              title="Only alphanumeric characters allowed"
+              required
             />
           </div>
           <div className="form-field-group">
@@ -88,6 +105,7 @@ const AddTask = ({ dispatch }) => {
                 id="priority"
                 value={formData.priority}
                 onChange={handleChange}
+                disabled={path[1] === "edit"}
               >
                 <option value="Low">Low</option>
                 <option value="Medium">Medium</option>
@@ -103,6 +121,8 @@ const AddTask = ({ dispatch }) => {
                 id="date"
                 value={formData.date}
                 onChange={handleChange}
+                min={new Date().toISOString().slice(0, 10)}
+                required
               />
             </div>
           </div>
@@ -116,6 +136,7 @@ const AddTask = ({ dispatch }) => {
               className="description"
               value={formData.description}
               onChange={handleChange}
+              maxLength={100}
             />
           </div>
           <div className="button-field">

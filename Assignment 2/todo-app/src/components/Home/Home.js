@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Todo from "../Todo/Todo";
 import "./Home.css";
 // import todos from "../../todos";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { deleteMultipleTodos } from "../../redux/todoSlice";
 
@@ -34,6 +34,12 @@ const Home = ({ dispatch }) => {
       dispatch={dispatch}
     />
   ));
+
+  const token = useSelector((state) => state.todos.token);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (typeof token !== "string") navigate("/login");
+  }, []);
 
   return (
     <div className="home">

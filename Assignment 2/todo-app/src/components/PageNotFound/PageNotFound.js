@@ -1,8 +1,15 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import "./PageNotFound.css";
 
 const PageNotFound = () => {
+  const token = useSelector((state) => state.todos.token);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (typeof token !== "string") navigate("/login");
+  }, []);
+
   return (
     <div className="error-page">
       <div className="error-text">

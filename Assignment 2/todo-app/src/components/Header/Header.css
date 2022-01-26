@@ -2,8 +2,10 @@
   height: 70px;
   /* width: 100vw; */
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  padding: 0 50px;
   background: rgb(93, 93, 209);
   box-shadow: 0 6px 8px rgba(167, 153, 153, 0.705);
 }
@@ -11,4 +13,14 @@
 .logo {
   font-size: x-large;
   color: #fff;
+}
+
+.logout-btn {
+  padding: 10px 10px;
+  color: black;
+  background: rgb(196, 247, 234);
+}
+
+.logout-btn:hover {
+  background: rgb(155, 241, 220);
 }

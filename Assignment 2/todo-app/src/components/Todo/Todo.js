@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
 import { deleteTodo } from "../../redux/todoSlice";
 import "./Todo.css";
 
@@ -61,9 +62,11 @@ const Todo = ({
         <div className={`todo-footer ${bkg(date) + "-footer"}`}>
           <div className="due-date">{date}</div>
           <div className="footer-actions">
-            <span className="edit">
-              <MdEdit />
-            </span>
+            <Link to={`/edit/${id}`}>
+              <span className="edit">
+                <MdEdit />
+              </span>
+            </Link>
             <span className="delete" onClick={deleteTodoItem}>
               <MdDelete />
             </span>

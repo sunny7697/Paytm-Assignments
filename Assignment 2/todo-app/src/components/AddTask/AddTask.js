@@ -1,14 +1,22 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { addTodo } from "../../redux/todoSlice";
+import { addTodo, deleteTodo } from "../../redux/todoSlice";
 import "./AddTask.css";
 
 const AddTask = ({ dispatch }) => {
+  // editing todo task
+  const path = window.location.pathname.split("/");
+  const id = Number(path[2]);
+  const editFormData = useSelector((state) =>
+    state.todos.todos.filter((tasks) => tasks.id === id)
+  )[0];
+
   const [formData, setFormData] = useState({
-    title: "",
-    priority: "Medium",
-    date: "",
-    description: "",
+    title: id ? editFormData.title : "",
+    priority: id ? editFormData.priority : "Medium",
+    date: id ? new Date(editFormData.date).toISOString().slice(0, 10) : "",
+    description: id ? editFormData.description : "",
   });
 
   const handleChange = (e) => {
@@ -39,6 +47,11 @@ const AddTask = ({ dispatch }) => {
   const navigate = useNavigate();
   const addTask = (e) => {
     e.preventDefault();
+
+    // checking if the url has id in it then it means we have to edit task so we will delete first and then add
+    if (path[2]) {
+      dispatch(deleteTodo({ id: id }));
+    }
     const formDate = new Date(formData.date);
     const dateString = `${
       monthNames[formDate.getMonth()]
@@ -51,7 +64,9 @@ const AddTask = ({ dispatch }) => {
     <div className="task-container">
       <div className="add-form-container">
         <form className="add-form" onSubmit={addTask}>
-          <h1 className="heading">Create Task</h1>
+          <h1 className="heading">
+            {path[1] === "edit" ? "Edit" : "Create"} Task
+          </h1>
           <div className="form-field">
             {/* Title */}
             <label htmlFor="title">Title</label>

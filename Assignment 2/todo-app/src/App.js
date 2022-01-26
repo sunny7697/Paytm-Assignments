@@ -18,6 +18,7 @@ function App() {
           <Route path="/" element={<Home dispatch={dispatch} />} />
           <Route path="/login" element={<Login dispatch={dispatch} />} />
           <Route path="/add" element={<AddTask dispatch={dispatch} />} />
+          <Route path="/edit/:id" element={<AddTask dispatch={dispatch} />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Footer />

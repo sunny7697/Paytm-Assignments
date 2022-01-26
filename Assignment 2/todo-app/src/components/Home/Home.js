@@ -4,20 +4,22 @@ import "./Home.css";
 // import todos from "../../todos";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { deleteMultipleTodos } from "../../redux/todoSlice";
 
 const Home = ({ dispatch }) => {
   const todos = useSelector((state) => state.todos.todos);
+  //   It checks which todo items has been selected (storing the id's in this array)
+  const [checkedBoxesArray, setCheckedBoxesArray] = useState([]);
 
   // To decide whether checkboxes to show or not (it's handler used in button down below and passing as props in Todo.js below)
   const [showCheckbox, setShowCheckbox] = useState(false);
-  const [btnText, setBtnText] = useState(true);
+  // const [btnText, setBtnText] = useState(true);
   const showCheckboxHandler = () => {
     setShowCheckbox((checkbox) => !checkbox);
-    setBtnText((btnText) => !btnText);
+    showCheckbox &&
+      dispatch(deleteMultipleTodos({ checkedBoxesArray: checkedBoxesArray }));
+    setCheckedBoxesArray(() => []);
   };
-
-  //   It checks which todo items has been selected (storing the id's in this array)
-  const [checkedBoxesArray, setCheckedBoxesArray] = useState([]);
 
   const element = todos.map((todo) => (
     <Todo
@@ -37,7 +39,7 @@ const Home = ({ dispatch }) => {
     <div className="home">
       <div className="buttons">
         <button className="btn" onClick={showCheckboxHandler}>
-          {checkedBoxesArray.length === 0 || btnText
+          {checkedBoxesArray.length === 0
             ? "Select Multiple"
             : "Delete Selected"}
         </button>

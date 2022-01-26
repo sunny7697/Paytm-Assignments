@@ -41,10 +41,18 @@ const todoSlice = createSlice({
     deleteTodo: (state, action) => {
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
+    deleteMultipleTodos: (state, action) => {
+      console.log(action.payload.checkedBoxesArray);
+      state.todos = state.todos.filter(
+        (todo) =>
+          action.payload.checkedBoxesArray.indexOf(todo.id.toString()) === -1
+      );
+    },
     addToken: (state, action) => {
       state.token = action.payload;
     },
   },
 });
-export const { addTodo, deleteTodo, addToken } = todoSlice.actions;
+export const { addTodo, deleteTodo, deleteMultipleTodos, addToken } =
+  todoSlice.actions;
 export default todoSlice.reducer;

@@ -48,6 +48,7 @@ const Login = ({ dispatch }) => {
             name="email"
             onChange={handleInputChange}
             value={email}
+            required
           />
         </div>
         <div className="password-container">
@@ -59,6 +60,7 @@ const Login = ({ dispatch }) => {
             name="password"
             onChange={handleInputChange}
             value={password}
+            required
           />
         </div>
         <button className="btn login-btn">Login</button>

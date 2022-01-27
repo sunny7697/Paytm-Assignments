@@ -4,7 +4,9 @@ import "./Home.css";
 // import todos from "../../todos";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { deleteMultipleTodos } from "../../redux/todoSlice";
+import { deleteMultipleTodos, deleteTodo } from "../../redux/todoSlice";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const Home = ({ dispatch }) => {
   const todos = useSelector((state) => state.todos.todos);
@@ -21,6 +23,23 @@ const Home = ({ dispatch }) => {
     setCheckedBoxesArray(() => []);
   };
 
+  // deleting todo task from redux store
+  const deleteTodoItem = (id) => {
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => dispatch(deleteTodo({ id: id })),
+        },
+        {
+          label: "No",
+        },
+      ],
+    });
+  };
+
   const element = todos.map((todo) => (
     <Todo
       showCheckbox={showCheckbox}
@@ -32,6 +51,7 @@ const Home = ({ dispatch }) => {
       description={todo.description}
       updateCheckedBoxArray={setCheckedBoxesArray}
       dispatch={dispatch}
+      deleteTodoItem={deleteTodoItem}
     />
   ));
 

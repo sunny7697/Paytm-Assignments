@@ -60,6 +60,7 @@ const Login = ({ dispatch }) => {
             name="password"
             onChange={handleInputChange}
             value={password}
+            minLength={6}
             required
           />
         </div>

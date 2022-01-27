@@ -14,6 +14,7 @@ const Todo = ({
   description,
   updateCheckedBoxArray,
   dispatch,
+  deleteTodoItem,
 }) => {
   // It checks if due_date has passed or not to change the color of todo accordingly
   const bkg = (due_date) => {
@@ -40,11 +41,11 @@ const Todo = ({
     }
   };
 
-  // deleting todo task from redux store
-  const deleteTodoItem = () => {
-    console.log(id);
-    dispatch(deleteTodo({ id: id }));
-  };
+  // // deleting todo task from redux store
+  // const deleteTodoItem = () => {
+  //   console.log(id);
+  //   dispatch(deleteTodo({ id: id }));
+  // };
 
   // To show tooltip that tells priority
   const priorityTooltip =
@@ -82,7 +83,7 @@ const Todo = ({
                 <MdEdit />
               </span>
             </Link>
-            <span className="delete" onClick={deleteTodoItem}>
+            <span className="delete" onClick={() => deleteTodoItem(id)}>
               <MdDelete />
             </span>
           </div>

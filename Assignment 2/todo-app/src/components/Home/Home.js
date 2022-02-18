@@ -60,6 +60,7 @@ const Home = ({ dispatch }) => {
   useEffect(() => {
     if (typeof token !== "string") navigate("/login");
   }, []);
+  console.log(todos);
 
   return (
     <div className="home">
@@ -73,7 +74,9 @@ const Home = ({ dispatch }) => {
           <button className="btn">Add Task</button>
         </Link>
       </div>
-      <div className="todo-containers">{element}</div>
+      <div className="todo-containers">
+        {todos.length !== 0 ? element : <h2>No Task Added</h2>}
+      </div>
     </div>
   );
 };

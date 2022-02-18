@@ -7,13 +7,6 @@ const initialState = {
       id: 12345,
       title: "Study",
       priority: "High",
-      date: "Jan 25, 2022",
-      description: "Learn Redux",
-    },
-    {
-      id: 23456,
-      title: "Study",
-      priority: "High",
       date: "Jan 28, 2022",
       description: "Complete Assignment",
     },

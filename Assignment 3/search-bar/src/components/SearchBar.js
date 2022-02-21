@@ -1,9 +1,15 @@
+import { useState } from "react";
+
 const SearchBar = ({
   debouncedHandleInput,
   searchedData,
   handleInputType,
   inputType,
+  inputText,
+  setInputFromSuggestions,
 }) => {
+  const [showAuto, setShowAuto] = useState(true);
+
   return (
     <div className="container">
       <div className="form-container">
@@ -41,16 +47,27 @@ const SearchBar = ({
             <input
               type="text"
               className="search-input"
+              value={inputText}
               onChange={debouncedHandleInput}
+              onBlur={() => {
+                setTimeout(() => {
+                  setShowAuto(false);
+                }, 250);
+              }}
+              onFocus={() => setShowAuto(true)}
             />
             <button type="submit" className="btn">
               Search
             </button>
           </div>
-          {searchedData?.length > 0 && searchedData?.length < 500 && (
+          {showAuto && searchedData?.length > 0 && searchedData?.length < 500 && (
             <div className="autocomplete">
               {searchedData.map((el, i) => (
-                <div className="autocomplete-items" key={i}>
+                <div
+                  className="autocomplete-items"
+                  key={i}
+                  onClick={setInputFromSuggestions}
+                >
                   <span>{el.name}</span>
                 </div>
               ))}

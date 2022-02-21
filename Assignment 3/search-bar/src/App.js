@@ -12,6 +12,7 @@ function App() {
   const [searchedData, setSearchedData] = useState([]);
   const [inputType, setInputType] = useState([true, false, false]); // 0th index -> name,  1st index -> email
   const [activeInputType, setActiveInputType] = useState("name");
+  const [inputText, setInputText] = useState("");
 
   const handleInputType = (e) => {
     const { name, checked } = e.target;
@@ -33,7 +34,11 @@ function App() {
     setSearchedData(data);
   };
 
-  const debouncedHandleInput = debounce(handleInputChange, 300);
+  const setInputFromSuggestions = (e) => {
+    setInputText(e.target.textContent);
+  };
+
+  const debouncedHandleInput = debounce(handleInputChange, setInputText, 300);
 
   return (
     <div className="App">
@@ -42,6 +47,8 @@ function App() {
         searchedData={searchedData}
         handleInputType={handleInputType}
         inputType={inputType}
+        inputText={inputText}
+        setInputFromSuggestions={setInputFromSuggestions}
       />
       <ShowData searchedData={searchedData} />
     </div>

@@ -1,8 +1,8 @@
-export const debounce = (func, delay) => {
+export const debounce = (func, fn, delay) => {
   let timer;
   return function (...args) {
     let context = this;
-    console.log(context);
+    fn(args[0].target.value);
     if (timer) clearTimeout(timer);
     timer = setTimeout(async () => {
       timer = null;

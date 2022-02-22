@@ -5,9 +5,11 @@ const SearchBar = ({
   searchedData,
   handleInputType,
   inputType,
+  activeInputType,
   inputText,
   setInputFromSuggestions,
 }) => {
+  // Auto-Suggestions box state
   const [showAuto, setShowAuto] = useState(true);
 
   return (
@@ -19,7 +21,7 @@ const SearchBar = ({
             type="checkbox"
             name="0"
             id="name"
-            className="name"
+            className="checkbox"
             checked={inputType[0]}
             onChange={handleInputType}
           />
@@ -28,7 +30,7 @@ const SearchBar = ({
             type="checkbox"
             name="1"
             id="email"
-            className="email"
+            className="checkbox"
             checked={inputType[1]}
             onChange={handleInputType}
           />
@@ -37,7 +39,7 @@ const SearchBar = ({
             type="checkbox"
             name="2"
             id="id"
-            className="id"
+            className="checkbox"
             checked={inputType[2]}
             onChange={handleInputType}
           />
@@ -50,6 +52,7 @@ const SearchBar = ({
               value={inputText}
               onChange={debouncedHandleInput}
               onBlur={() => {
+                // setTimeout function so that first auto-suggestion text get copied in input box then auto-suggestions box disappear
                 setTimeout(() => {
                   setShowAuto(false);
                 }, 250);
@@ -68,7 +71,13 @@ const SearchBar = ({
                   key={i}
                   onClick={setInputFromSuggestions}
                 >
-                  <span>{el.name}</span>
+                  <span>
+                    {activeInputType === "name"
+                      ? el.name
+                      : activeInputType === "email"
+                      ? el.email
+                      : el.id}
+                  </span>
                 </div>
               ))}
             </div>

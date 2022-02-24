@@ -15,7 +15,7 @@ export const fetchData = async (search, searchType) => {
 export const filterData = (data, search, searchType, flag = true) => {
   return data.filter((d) => {
     return searchType === "name"
-      ? d.name.indexOf(search) === 0
+      ? d.name.indexOf(search.toLowerCase()) === 0
       : searchType === "email"
       ? d.email.indexOf(search) === 0 ||
         (flag && d.email.toLowerCase().indexOf(search) !== -1)

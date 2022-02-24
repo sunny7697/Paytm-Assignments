@@ -16,7 +16,7 @@
   justify-content: center;
   background: rgb(93, 93, 209);
   padding: 15px 0;
-  min-height: 100px;
+  height: 100px;
 }
 
 .form-container {
@@ -43,6 +43,7 @@
   max-height: 273px;
   overflow: scroll;
   overflow-x: hidden;
+  z-index: 3;
 }
 
 .autocomplete-items {
@@ -93,6 +94,7 @@
   box-shadow: rgba(0, 0, 0, 0.26) 0px 5px 15px 0px;
   border-radius: 5px;
   text-align: justify;
+  z-index: 2;
 }
 .item-header {
   display: flex;

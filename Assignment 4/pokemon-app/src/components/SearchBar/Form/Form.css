@@ -72,7 +72,7 @@ select {
   display: inline-block;
   font: inherit;
   line-height: 1.5em;
-  padding: 0.25rem 3.5rem 0.25rem 1rem;
+  padding: 0.25rem 3.5rem 0.25rem 0.5rem;
   width: 22rem;
 
   /* reset */

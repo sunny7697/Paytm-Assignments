@@ -27,7 +27,9 @@ const PokemonCard = ({ pokemon, searchType }) => {
         pokemon = data.varieties[0].pokemon;
       }
       const res = await fetchImage(pokemon.name);
-      const image = res.sprites?.other?.dream_world?.front_default;
+      const image =
+        res.sprites?.other?.dream_world?.front_default ||
+        res.sprites?.other?.home?.front_default;
 
       setImageUrl(image);
     };

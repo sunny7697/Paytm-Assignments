@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const ShowPokemons = () => {
   const pokemons = useSelector((state) => state.pokemons.pokemons);
+  console.log(pokemons);
   const searchType = useSelector((state) => state.searchType);
 
   const pokemonElement = pokemons.map((pokemon, i) => (

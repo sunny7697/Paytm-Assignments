@@ -28,7 +28,8 @@ const SearchBar = () => {
     setSearchText(value);
   }, 400);
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     dispatch(removePokemons());
     dispatch(setPokemons(searchedPokemons));
   };

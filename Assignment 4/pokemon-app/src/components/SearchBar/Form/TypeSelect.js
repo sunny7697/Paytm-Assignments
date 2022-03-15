@@ -1,6 +1,10 @@
 export const TypeSelect = ({ handleInputChange }) => {
   return (
-    <select className="minimal" onChange={handleInputChange} defaultValue={"0"}>
+    <select
+      className="minimal search-input"
+      onChange={handleInputChange}
+      defaultValue={"0"}
+    >
       <option value="0" disabled="disabled">
         Select Type of pokemons
       </option>

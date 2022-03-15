@@ -16,7 +16,7 @@ const Form = ({
 
   return (
     <div className="container">
-      <div className="form-container">
+      <form className="form-container">
         <div className="input-type">
           <label htmlFor="name">Name</label>
           <input
@@ -70,7 +70,7 @@ const Form = ({
             <button
               type="submit"
               className="btn"
-              onSubmit={handleClick}
+              // onDragEnter={handleClick}
               onClick={handleClick}
             >
               Search
@@ -90,7 +90,7 @@ const Form = ({
             </div>
           )}
         </div>
-      </div>
+      </form>
     </div>
   );
 };

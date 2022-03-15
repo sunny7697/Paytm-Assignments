@@ -8,7 +8,6 @@ export const fetchData = async (search, searchType) => {
       res = await fetch("https://pokeapi.co/api/v2/pokemon?offset=0&limit=800");
       data = await res.json();
       return filterData(data.results, search);
-      // return data.results;
     } else if (searchType === "1") {
       res = await fetch(`https://pokeapi.co/api/v2/type/${search}`);
       data = await res.json();
@@ -33,6 +32,48 @@ export const fetchImage = async (name) => {
     console.log(error);
     return [];
   }
+};
+
+export const fetchPokemonDetails = async (name) => {
+  let details = {};
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    .then(async (res) => {
+      const data = await res.json();
+      details = {
+        name: data.name,
+        height: data.height,
+        weight: data.weight,
+        moves: data.moves.slice(0, 5).map((m) => m.move.name),
+        types: data.types.map((t) => t.type.name),
+      };
+
+      return data.species;
+    })
+    .then(async (species) => {
+      const res = await fetch(species.url);
+      return res;
+    })
+    .then(async (res) => {
+      const data = await res.json();
+      details.generation = data.generation.name;
+
+      return data.evolution_chain.url;
+    })
+    .then(async (url) => {
+      const res = await fetch(url);
+      return res;
+    })
+    .then(async (res) => {
+      const data = await res.json();
+
+      details.evolution_chain = [
+        data.chain.species.name,
+        data.chain.evolves_to[0]?.species.name,
+        data.chain.evolves_to[0]?.evolves_to[0]?.species.name,
+      ];
+    });
+
+  return details;
 };
 
 export const filterData = (data, search) => {

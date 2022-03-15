@@ -1,4 +1,4 @@
-.pokemon-container {
+.pokemons-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 20px;
@@ -8,7 +8,7 @@
 .card-container {
   border: 1px solid black;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.26) 0px 5px 15px 0px;
+  box-shadow: rgba(0, 0, 0, 0.26) 0px 5px 10px 0px;
 }
 .card-container:hover {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 12px 22px 0px;

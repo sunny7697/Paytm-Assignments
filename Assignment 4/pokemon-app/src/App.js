@@ -1,15 +1,23 @@
 import { useSelector } from "react-redux";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
+import Home from "./components/Home/Home";
 import "./App.css";
-import ShowPokemons from "./components/Main/ShowPokemons";
-import SearchBar from "./components/SearchBar/SearchBar";
+import PokemonDetails from "./components/PokemonDetails/PokemonDetails";
 
 function App() {
-  // const pokemons = useSelector((state) => state.pokemons.pokemons);
-  // console.log(pokemons);
   return (
     <div className="App">
-      <SearchBar />
-      <ShowPokemons />
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/pokemon/:name" element={<PokemonDetails />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

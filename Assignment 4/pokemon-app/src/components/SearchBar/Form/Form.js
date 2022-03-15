@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Form.css";
 import { GenerationSelect } from "./GenerationSelect";
 import { TypeSelect } from "./TypeSelect";
@@ -9,6 +9,8 @@ const Form = ({
   handleInputChange,
   handleSearchType,
   searchedPokemons,
+  setInputFromSuggestions,
+  inputEl,
 }) => {
   const [showAuto, setShowAuto] = useState(false);
 
@@ -50,6 +52,7 @@ const Form = ({
               <input
                 type="text"
                 className="search-input"
+                ref={inputEl}
                 onChange={handleInputChange}
                 onBlur={() => {
                   // setTimeout function so that first auto-suggestion text get copied in input box then auto-suggestions box disappear
@@ -64,7 +67,12 @@ const Form = ({
             ) : (
               <GenerationSelect handleInputChange={handleInputChange} />
             )}
-            <button type="submit" className="btn" onClick={handleClick}>
+            <button
+              type="submit"
+              className="btn"
+              onSubmit={handleClick}
+              onClick={handleClick}
+            >
               Search
             </button>
           </div>
@@ -74,7 +82,7 @@ const Form = ({
                 <div
                   className="autocomplete-items"
                   key={i}
-                  // onClick={setInputFromSuggestions}
+                  onClick={setInputFromSuggestions}
                 >
                   <span>{el.name}</span>
                 </div>

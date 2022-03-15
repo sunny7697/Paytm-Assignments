@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import {
@@ -13,6 +13,7 @@ import { debounce } from "lodash";
 const SearchBar = () => {
   const [searchedPokemons, setSearchedPokemons] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const inputEl = useRef(null);
   const searchType = useSelector((state) => state.searchType);
 
   const dispatch = useDispatch();
@@ -31,21 +32,34 @@ const SearchBar = () => {
     dispatch(removePokemons());
     dispatch(setPokemons(searchedPokemons));
   };
+  const setInputFromSuggestions = (e) => {
+    inputEl.current.value = e.target.textContent;
+    setSearchText(inputEl.current.value);
+  };
 
-  useEffect(async () => {
-    if (searchText.length != 0) {
-      const data = await fetchData(searchText, searchType);
-      setSearchedPokemons(data);
-    }
-  }, [searchText]);
+  useEffect(() => {
+    const fetchDataFn = async () => {
+      try {
+        if (searchText.length !== 0) {
+          const data = await fetchData(searchText, searchType);
+          setSearchedPokemons(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDataFn();
+  }, [searchText, searchType]);
 
   return (
     <Form
       searchType={searchType}
       handleClick={handleClick}
+      setInputFromSuggestions={setInputFromSuggestions}
       handleInputChange={handleInputChange}
       handleSearchType={handleSearchType}
       searchedPokemons={searchedPokemons}
+      inputEl={inputEl}
     />
   );
 };

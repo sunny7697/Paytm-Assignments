@@ -25,7 +25,7 @@ const SearchBar = () => {
 
   const handleInputChange = debounce((e) => {
     const { value } = e.target;
-    setSearchText(value);
+    setSearchText(() => value);
   }, 400);
 
   const handleClick = (e) => {
@@ -34,8 +34,8 @@ const SearchBar = () => {
     dispatch(setPokemons(searchedPokemons));
   };
   const setInputFromSuggestions = (e) => {
-    inputEl.current.value = e.target.textContent;
-    setSearchText(inputEl.current.value);
+    inputEl.current.value = typeof e === "string" ? e : e.target.textContent;
+    setSearchText(() => inputEl.current.value);
   };
 
   useEffect(() => {
@@ -55,6 +55,7 @@ const SearchBar = () => {
   return (
     <Form
       searchType={searchType}
+      searchText={searchText}
       handleClick={handleClick}
       setInputFromSuggestions={setInputFromSuggestions}
       handleInputChange={handleInputChange}

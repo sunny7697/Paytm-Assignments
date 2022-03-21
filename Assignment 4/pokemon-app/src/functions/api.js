@@ -1,7 +1,5 @@
 export const fetchData = async (search, searchType) => {
   try {
-    // if (search == "") return [];
-
     let res = "",
       data = "";
     if (searchType === "0") {
@@ -66,11 +64,24 @@ export const fetchPokemonDetails = async (name) => {
     .then(async (res) => {
       const data = await res.json();
 
-      details.evolution_chain = [
-        data.chain.species.name,
-        data.chain.evolves_to[0]?.species.name,
-        data.chain.evolves_to[0]?.evolves_to[0]?.species.name,
-      ];
+      details.evolution_chain = data.chain.evolves_to.map((item) => {
+        return [
+          data.chain.species.name,
+          item.species.name,
+          item.evolves_to[0]?.species.name,
+        ];
+      });
+
+      if (details.evolution_chain.length === 0)
+        details.evolution_chain = [[data.chain.species.name]];
+
+      // console.log(arr);
+
+      // details.evolution_chain = [
+      //   data.chain.species.name,
+      //   data.chain.evolves_to[0]?.species.name,
+      //   data.chain.evolves_to[0]?.evolves_to[0]?.species.name,
+      // ];
     });
 
   return details;

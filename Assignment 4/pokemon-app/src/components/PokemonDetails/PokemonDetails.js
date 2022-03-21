@@ -1,7 +1,10 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getPokemonDetails } from "../../redux/actions.js/pokemonActions";
+import {
+  getPokemonDetails,
+  removePokemons,
+} from "../../redux/actions.js/pokemonActions";
 import "./PokemonDetails.css";
 
 const PokemonDetails = () => {
@@ -11,6 +14,11 @@ const PokemonDetails = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const navigateToHome = () => {
+    dispatch(removePokemons());
+    navigate("/");
+  };
+
   useEffect(async () => {
     if (!name) navigate("/");
     else dispatch(getPokemonDetails(name));
@@ -18,6 +26,9 @@ const PokemonDetails = () => {
 
   return (
     <div className="pokemon-page">
+      <button className="home-btn" onClick={navigateToHome}>
+        Back To Home
+      </button>
       <div className="pokemon-container">
         {details.name && (
           <div className="pokemon-details">
@@ -70,11 +81,15 @@ const PokemonDetails = () => {
                 <div className="detail-title">
                   <b>Evolutions: </b>
                 </div>
-                {details.evolution_chain.map((e, i) => (
-                  <a key={i}>
-                    {e && i != 0 ? <span>-{">"}</span> : ""}
-                    {e}{" "}
-                  </a>
+                {details.evolution_chain.map((e_group, i) => (
+                  <div key={i}>
+                    {e_group.map((e, j) => (
+                      <a key={j}>
+                        {e && j != 0 ? <span>-{">"}</span> : ""}
+                        {e}{" "}
+                      </a>
+                    ))}
+                  </div>
                 ))}
               </div>
             </div>

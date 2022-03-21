@@ -14,9 +14,11 @@
 
 .search-input {
   font-size: medium;
-  padding: 5px 10px;
+  padding: 0.48rem 10px;
   border-radius: 5px;
   margin-right: 10px;
+  border: none;
+  width: 22rem;
 }
 
 .btn {
@@ -41,7 +43,13 @@
 }
 
 .autocomplete-items:hover {
-  background: rgb(240, 240, 247);
+  background: rgb(230, 230, 248);
+}
+
+.highlight {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
 }
 
 .checkbox {
@@ -109,7 +117,8 @@ select.minimal:focus {
 }
 
 @media screen and (max-width: 500px) {
-  select {
+  select,
+  .search-input {
     width: 15rem;
   }
 }

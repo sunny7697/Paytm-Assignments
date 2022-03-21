@@ -37,3 +37,25 @@
   text-align: center;
   text-transform: capitalize;
 }
+
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 40px 10px 0;
+  flex-wrap: wrap;
+}
+
+.page-num {
+  margin-left: 20px;
+  cursor: pointer;
+  padding: 10px 15px;
+}
+
+.page-num:hover {
+  background: #ddd;
+}
+
+.active {
+  background: #4caf50;
+  color: #fff;
+}

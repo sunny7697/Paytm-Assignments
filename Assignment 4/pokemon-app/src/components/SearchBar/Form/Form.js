@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { removePokemons } from "../../../redux/actions.js/pokemonActions";
 import "./Form.css";
 import { GenerationSelect } from "./GenerationSelect";
 import { TypeSelect } from "./TypeSelect";
 
 const Form = ({
   searchType,
+  searchText,
   handleClick,
   handleInputChange,
   handleSearchType,
@@ -13,6 +16,37 @@ const Form = ({
   inputEl,
 }) => {
   const [showAuto, setShowAuto] = useState(false);
+  const dispatch = useDispatch();
+  const [cursor, setCursor] = useState(-1);
+
+  const keyboardNavigation = (e) => {
+    if (e.key === "ArrowDown") {
+      showAuto
+        ? setCursor((c) => (c < searchedPokemons.length - 1 ? c + 1 : c))
+        : setShowAuto(true);
+    }
+    if (e.key === "ArrowUp") {
+      setCursor((c) => (c > 0 ? c - 1 : 0));
+    }
+    if (e.key === "Escape") {
+      inputEl.current.blur();
+      setCursor(-1);
+      setShowAuto(false);
+    }
+    if (e.key === "Enter" && cursor >= 0) {
+      setInputFromSuggestions(searchedPokemons[cursor].name);
+      setShowAuto(false);
+      setTimeout(() => dispatch(removePokemons()), 0);
+      setTimeout(() => inputEl.current.blur(), 0);
+      setCursor(-1);
+    }
+  };
+
+  useEffect(() => {
+    if (searchText === "") {
+      setCursor(-1);
+    }
+  }, [searchText]);
 
   return (
     <div className="container">
@@ -58,29 +92,28 @@ const Form = ({
                   // setTimeout function so that first auto-suggestion text get copied in input box then auto-suggestions box disappear
                   setTimeout(() => {
                     setShowAuto(false);
+                    // setCursor(-1);
                   }, 250);
                 }}
                 onFocus={() => setShowAuto(true)}
+                onKeyDown={keyboardNavigation}
               />
             ) : searchType === "1" ? (
               <TypeSelect handleInputChange={handleInputChange} />
             ) : (
               <GenerationSelect handleInputChange={handleInputChange} />
             )}
-            <button
-              type="submit"
-              className="btn"
-              // onDragEnter={handleClick}
-              onClick={handleClick}
-            >
+            <button type="submit" className="btn" onClick={handleClick}>
               Search
             </button>
           </div>
-          {showAuto && searchedPokemons?.length > 0 && (
+          {showAuto && searchText && searchedPokemons?.length > 0 && (
             <div className="autocomplete">
               {searchedPokemons.map((el, i) => (
                 <div
-                  className="autocomplete-items"
+                  className={`autocomplete-items ${
+                    cursor === i ? "highlight" : ""
+                  }`}
                   key={i}
                   onClick={setInputFromSuggestions}
                 >

@@ -1,7 +1,7 @@
 export const TypeSelect = ({ handleInputChange }) => {
   return (
     <select
-      className="minimal search-input"
+      className="minimal "
       onChange={handleInputChange}
       defaultValue={"0"}
     >

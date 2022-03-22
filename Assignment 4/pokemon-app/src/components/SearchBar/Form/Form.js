@@ -37,7 +37,7 @@ const Form = ({
       setInputFromSuggestions(searchedPokemons[cursor].name);
       setShowAuto(false);
       setTimeout(() => dispatch(removePokemons()), 0);
-      setTimeout(() => inputEl.current.blur(), 0);
+      // setTimeout(() => inputEl.current.blur(), 0);
       setCursor(-1);
     }
   };

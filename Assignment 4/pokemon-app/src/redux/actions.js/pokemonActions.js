@@ -25,3 +25,7 @@ export const setPokemonDetails = (details = null) => {
     payload: details,
   };
 };
+
+export const removePokemonDetails = () => ({
+  type: ActionTypes.REMOVE_POKEMON_DETAILS,
+});

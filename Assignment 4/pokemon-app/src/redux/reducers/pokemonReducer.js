@@ -28,6 +28,8 @@ export const setPokemonDetailsReducer = (state = {}, action) => {
   switch (action.type) {
     case ActionTypes.SET_POKEMON_DETAILS:
       return { ...state, ...action.payload };
+    case ActionTypes.REMOVE_POKEMON_DETAILS:
+      return {};
     default:
       return state;
   }

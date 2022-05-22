@@ -91,4 +91,9 @@ ul {
     align-items: center;
     justify-content: center;
   }
+
+  .ash-gif {
+    width: 80vw;
+    height: 50vh;
+  }
 }

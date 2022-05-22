@@ -87,6 +87,7 @@ const Form = ({
                 type="text"
                 className="search-input"
                 ref={inputEl}
+                placeholder="Search your pokemon here"
                 onChange={handleInputChange}
                 onBlur={() => {
                   // setTimeout function so that first auto-suggestion text get copied in input box then auto-suggestions box disappear

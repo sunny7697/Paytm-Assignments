@@ -74,14 +74,6 @@ export const fetchPokemonDetails = async (name) => {
 
       if (details.evolution_chain.length === 0)
         details.evolution_chain = [[data.chain.species.name]];
-
-      // console.log(arr);
-
-      // details.evolution_chain = [
-      //   data.chain.species.name,
-      //   data.chain.evolves_to[0]?.species.name,
-      //   data.chain.evolves_to[0]?.evolves_to[0]?.species.name,
-      // ];
     });
 
   return details;
